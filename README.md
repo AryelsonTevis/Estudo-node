@@ -117,8 +117,7 @@ CTRL + C
 
 ## 📈 Melhorias futuras
 
-- JWT
-- Validação
+
 - Arquitetura em camadas
 - Deploy
 

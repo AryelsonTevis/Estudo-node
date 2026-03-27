@@ -4,8 +4,17 @@ import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export const authService = {
-  async register(nome, email, senha) {
+const authService = {
+  validEmail(email) {
+    const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    if (!reg.test(email)) {
+      const error = new Error("Email inválido");
+      error.statusCode = 400;
+      throw error;
+    }
+  },
+  async register({ nome, email, senha }) {
+    this.validEmail(email);
     const hash = await bcrypt.hash(senha, 10);
 
     return userModel.create({
@@ -15,6 +24,7 @@ export const authService = {
     });
   },
   async login({ email, senha }) {
+    this.validEmail(email);
     try {
       const user = await userModel.findByEmail(email);
 
