@@ -7,14 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-
+# Variáveis de ambiente
 .env
+.env.*
 
+# Prisma
 /generated/prisma
+prisma/generated/
 
-/generated/prisma
 
-node_modules
 dist
 dist-ssr
 *.local
